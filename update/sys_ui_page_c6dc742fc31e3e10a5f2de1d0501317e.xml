@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[// Display a greeting with the current user's name
+var userName = "$[gs.getUserName()]";
+document.getElementById('greeting').innerText = "Hello, " + userName + "! Here are your recent incidents:";
+ 
+// Use GlideAjax to get recent incidents for the user
+var ga = new GlideAjax('IncidentsForUser');
+ga.addParam('sysparm_name', 'getRecentIncidents');
+ga.getXMLAnswer(function(response){
+    var incidents = [];
+    try {
+        incidents = JSON.parse(response);
+    } catch (e) {
+        incidents = [];
+    }
+    var table = '<table border="1" style="width:100%;border-collapse:collapse;"><thead><tr><th>Number</th><th>Short Description</th><th>State</th><th>Last Updated</th></tr></thead><tbody>';
+    incidents.forEach(function(incident){
+        table += '<tr>' +
+                 '<td>' + incident.number + '</td>' +
+                 '<td>' + incident.short_description + '</td>' +
+                 '<td>' + incident.state + '</td>' +
+                 '<td>' + incident.sys_updated_on + '</td>' +
+                 '</tr>';
+    });
+    table += '</tbody></table>';
+    document.getElementById('incidentTable').innerHTML = table;
+});]]></client_script>
+        <description>UI page for incidents</description>
+        <direct>false</direct>
+        <endpoint>x_58872_needit_recent_incidents_user.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide">
+  <h2 id="greeting"></h2>
+  <div id="incidentTable"></div>
+</j:jelly>]]></html>
+        <name>recent_incidents_user</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-13 14:48:56</sys_created_on>
+        <sys_id>c6dc742fc31e3e10a5f2de1d0501317e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>recent_incidents_user</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_ui_page_c6dc742fc31e3e10a5f2de1d0501317e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-13 15:17:13</sys_updated_on>
+    </sys_ui_page>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>c6dc742fc31e3e10a5f2de1d0501317e</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-13 14:48:55</sys_created_on>
+        <sys_id>164d70ebc31e3e10a5f2de1d0501317f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-13 14:48:55</sys_updated_on>
+        <table>sys_ui_page</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
