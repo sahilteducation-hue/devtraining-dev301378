@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ca2b58f5c362ba10a5f2de1d05013133" label="Demo Mixed Datatypes" max_length="40" name="x_58872_needit_demo_mixed_datatypes" type="collection">
+        <element label="Email" max_length="40" name="u_email" type="string"/>
+        <element label="Salary Amount" max_length="20" name="u_salary_amount" type="decimal"/>
+        <element label="Full Name" max_length="50" name="u_full_name" type="string"/>
+        <element label="Requested By" max_length="32" name="u_requested_by" reference="sys_user" type="reference"/>
+        <element label="Record ID" mandatory="true" max_length="40" name="u_record_id" type="integer" unique="true"/>
+        <element label="Hire Date" max_length="40" name="u_hire_date" type="glide_date"/>
+        <element label="Assignment Group" max_length="32" name="u_assignment_group" reference="sys_user_group" type="reference"/>
+        <element default="true" label="Is Active" max_length="40" name="u_is_active" type="boolean"/>
+        <element label="Assigned To" max_length="32" name="u_assigned_to" reference="sys_user" type="reference"/>
+        <element choice="1" default="Standard" label="Request Type" max_length="40" name="u_request_type" type="choice">
+            <choice>
+                <element inactive="true" inactive_on_update="true" label="Enhancement" value="Enhancement"/>
+                <element inactive_on_update="false" label="Urgent" value="Urgent"/>
+                <element inactive_on_update="false" label="Bug" value="Bug"/>
+                <element inactive_on_update="false" label="Standard" value="Standard"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="u_assigned_to"/>
+        </index>
+        <index name="index2">
+            <element name="u_assignment_group"/>
+        </index>
+        <index name="index3" unique="true">
+            <element name="u_record_id"/>
+        </index>
+        <index name="index4">
+            <element name="u_requested_by"/>
+        </index>
+    </element>
+</database>

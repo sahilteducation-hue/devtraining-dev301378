@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_58872_needit.IncidentInProgressUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>IncidentInProgressUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var IncidentInProgressUtils = Class.create();
+IncidentInProgressUtils.prototype = {
+    initialize: function () {},
+
+    /**
+     * Returns an array of {number, short_description} for incidents in "In Progress".
+     * Note: Incident state is typically a choice field stored as an integer (often 2 = In Progress).
+     */
+    getInProgressIncidents: function () {
+        var results = [];
+
+        var gr = new GlideRecord('incident');
+        gr.addQuery('state', '2'); // "In Progress" is commonly value 2; confirm in your instance if customized
+        gr.query();
+
+        while (gr.next()) {
+            results.push({
+                number: gr.getValue('number'),
+                short_description: gr.getValue('short_description')
+            });
+        }
+
+        return results;
+    },
+
+    type: 'IncidentInProgressUtils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>beth.anglin</sys_created_by>
+        <sys_created_on>2026-01-19 12:43:15</sys_created_on>
+        <sys_id>4ec9dfd1c32ef610a5f2de1d05013110</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IncidentInProgressUtils</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_4ec9dfd1c32ef610a5f2de1d05013110</sys_update_name>
+        <sys_updated_by>beth.anglin</sys_updated_by>
+        <sys_updated_on>2026-01-19 12:43:15</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>4ec9dfd1c32ef610a5f2de1d05013110</id>
+        <sys_created_by>beth.anglin</sys_created_by>
+        <sys_created_on>2026-01-19 12:43:14</sys_created_on>
+        <sys_id>3f0a9715c32ef610a5f2de1d050131ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>beth.anglin</sys_updated_by>
+        <sys_updated_on>2026-01-19 12:43:14</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
