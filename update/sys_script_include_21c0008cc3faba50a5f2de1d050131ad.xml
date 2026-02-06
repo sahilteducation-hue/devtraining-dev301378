@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_58872_needit.IncidentListUtil</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>IncidentListUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var IncidentListUtil = Class.create();
+IncidentListUtil.prototype = {
+    initialize: function () {},
+
+    getInProgressIncidents: function (maxCount) {
+        maxCount = parseInt(maxCount, 10) || 10;
+
+        var results = [];
+        var gr = new GlideRecord('incident');
+        gr.addQuery('state', 2); // 2 = In Progress (typical OOB)
+        gr.orderByDesc('sys_updated_on');
+        gr.setLimit(maxCount);
+        gr.query();
+
+        while (gr.next()) {
+            results.push({
+                number: gr.getValue('number'),
+                short_description: gr.getValue('short_description')
+            });
+        }
+        return results;
+    },
+
+    type: 'IncidentListUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-27 09:59:24</sys_created_on>
+        <sys_id>21c0008cc3faba50a5f2de1d050131ad</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IncidentListUtil</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_21c0008cc3faba50a5f2de1d050131ad</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-27 10:06:20</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>21c0008cc3faba50a5f2de1d050131ad</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-27 09:59:23</sys_created_on>
+        <sys_id>3941484cc3faba50a5f2de1d050131dc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-27 09:59:23</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
