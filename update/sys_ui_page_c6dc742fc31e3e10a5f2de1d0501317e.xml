@@ -6,7 +6,7 @@ var userName = "$[gs.getUserName()]";
 document.getElementById('greeting').innerText = "Hello, " + userName + "! Here are your recent incidents:";
  
 // Use GlideAjax to get recent incidents for the user
-var ga = new GlideAjax('IncidentsForUser');
+var ga = new GlideAjax('x_58872_needit.IncidentsForUser');
 ga.addParam('sysparm_name', 'getRecentIncidents');
 ga.getXMLAnswer(function(response){
     var incidents = [];
@@ -41,14 +41,14 @@ ga.getXMLAnswer(function(response){
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-01-13 14:48:56</sys_created_on>
         <sys_id>c6dc742fc31e3e10a5f2de1d0501317e</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>recent_incidents_user</sys_name>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
         <sys_policy/>
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sys_ui_page_c6dc742fc31e3e10a5f2de1d0501317e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-13 15:17:13</sys_updated_on>
+        <sys_updated_on>2026-02-20 10:53:37</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>c6dc742fc31e3e10a5f2de1d0501317e</id>
